@@ -1,0 +1,35 @@
+.jointTransfers {
+  padding: 12px 40px;
+  color: #011728;
+  background-color: #fff;
+  border-radius: 4px;
+  border: solid #cfcdd0;
+  border-width: 0 0 2px;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1170px;
+  margin: 0 auto 24px;
+}
+
+.jointTransfers-hd {
+  margin-bottom: 24px;
+}
+
+.title_2 {
+  font-size: 14px;
+}
+
+.subhead {
+  font-size: 12px;
+  margin-left: 12px;
+}
+
+.itemsList li * {
+  display: inline;
+}
+
+.btnRefresh {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}

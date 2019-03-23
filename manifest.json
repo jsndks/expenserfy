@@ -1,0 +1,13 @@
+{
+  "name": "Expense Reporter",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Adds features to statement for more specific expense reporting",
+  "content_scripts": [
+     {
+       "matches": ["https://myaccounts.capitalone.com/*"],
+       "css": ["myStyles.css"],
+       "js": ["contentScript.js"]
+     }
+   ]
+}
