@@ -1,4 +1,7 @@
 'use strict';
+
+const selectionList = [];
+
 /**
  * createEl
  * Helper to create a DOM structure from an HTML string
@@ -95,12 +98,15 @@ function addRefreshBtn() {
  */
 function attachInputs() {
   // Add checkbox inputs on each transaction row
-  const transactionRows = document.querySelectorAll('.transactions-data-row');
+  const transactionRows = document.querySelectorAll('.transaction-entry');
   transactionRows.forEach(row => {
     const existing = row.querySelector('.expenseCheck');
     if (!existing) {
-      const checkbox = createEl(`<input type="checkbox" class="expenseCheck" />`);
-      row.appendChild(checkbox);
+      const rowId = row.getAttribute('id');
+      const selected = selectionList.indexOf(rowId) > -1;
+      const checkAttr = selected ? 'checked' : '';
+      const checkbox = createEl(`<input type="checkbox" class="expenseCheck" ${checkAttr} />`);
+      row.querySelector('.transactions-data-row').appendChild(checkbox);
 
       checkbox.addEventListener('click', function(event) {
         event.stopPropagation();
@@ -113,9 +119,25 @@ function attachInputs() {
   expenseChecks.forEach(check => {
     check.onclick = function(event) {
       event.stopPropagation();
-      updateExpenses(transactionRows);
+      handleSelectExpense(event.target.closest('.transaction-entry').getAttribute('id'));
     }
   });
+}
+
+/**
+ * handleSelectExpense
+ * expense select handler
+ */
+function handleSelectExpense(selectionId) {
+  if (selectionId) {
+    const exists = selectionList.indexOf(selectionId) > -1;
+    if (!exists) {
+      selectionList.push(selectionId);
+    }
+  }
+
+  const transactionRows = selectionList.map(selectionItem => document.querySelector(`#${selectionItem}`));
+  updateExpenses(transactionRows);
 }
 
 /**
